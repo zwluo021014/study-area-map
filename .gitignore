@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+workdir/
+examples/output/
+*.npz
+*.tif
+*.tiff
+.DS_Store
+*.SKILL.md.bak
+.SKILL.md.bak
+.idea/
+.vscode/

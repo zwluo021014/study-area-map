@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2026 zwluo021014
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+NOTE ON DATA LICENCES (not covered by the MIT licence above)
+
+This repository contains code and style specifications only. Maps produced with
+it draw on third-party data whose licences are separate and must be complied
+with independently, in particular:
+
+  - OpenStreetMap data (including Geofabrik extracts): © OpenStreetMap
+    contributors, made available under the Open Data Commons Open Database
+    Licence (ODbL). Attribution is required in the figure or its caption.
+  - Natural Earth: public domain.
+  - AWS Terrain Tiles (terrarium): see the upstream source terms.
+  - Aliyun DataV administrative boundaries: see the DataV terms of service;
+    redistribution of derived boundary data may be restricted.
+  - Ten-dash-line dataset (China-GeoData): verify the upstream licence.
+
+Maps of China that are published publicly generally require a map review number
+(审图号) issued by the Ministry of Natural Resources. Nothing in this repository
+substitutes for that procedure.

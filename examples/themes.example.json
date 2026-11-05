@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Rocky desertification 2010",
+    "source": "path/to/rocky_desertification_2010.zip",
+    "entry": "name_inside_the_zip.tif",
+    "nodata": 255,
+    "classes": [
+      {"value": 0, "label": "Non-desertified", "color": "#bcd8b4"},
+      {"value": 1, "label": "Light",           "color": "#f0d264"},
+      {"value": 2, "label": "Moderate",        "color": "#e8863a"},
+      {"value": 3, "label": "Severe",          "color": "#c2352b"},
+      {"value": 4, "label": "Very severe",     "color": "#6e1414"}
+    ]
+  },
+  {
+    "title": "Land cover 2025",
+    "source": "path/to/landcover_2025.tif",
+    "nodata": 255,
+    "classes": [
+      {"value": 10, "label": "Cropland",  "color": "#e0b33c"},
+      {"value": 20, "label": "Forest",    "color": "#2e7d32"},
+      {"value": 30, "label": "Grassland", "color": "#a9d18c"},
+      {"value": 40, "label": "Shrubland", "color": "#6fa05f"},
+      {"value": 60, "label": "Water",     "color": "#2f7fd6"},
+      {"value": 80, "label": "Built-up",  "color": "#d24b4b"}
+    ]
+  }
+]

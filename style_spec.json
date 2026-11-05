@@ -1,0 +1,79 @@
+{
+  "name": "study-area-map style card",
+  "version": "2.0",
+  "derived_from": "参考图逆向 + Nature 投稿要求 + 地学论文审稿高频拒因统计 + ColorBrewer 规范",
+  "current_defaults": {
+    "note": "本节是 2026-11-04 v17 定稿后的唯一权威值。下方 layout / typography 里与之冲突的旧值（面板字母右上、刻度 7pt、度分秒四侧、canvas 11.6x8.8）仅作历史记录，不要再用。",
+    "canvas_in": [13.4, 9.6],
+    "font_family": "Times New Roman（图内中文须显式给 ['Times New Roman','Microsoft YaHei','SimHei'] 回退，否则豆腐块）",
+    "tick_label_pt": {"main_panels": 11.0, "locator_panels": 9.5, "weight": "bold"},
+    "latitude_label": {"rotation_deg": 90, "format": "度分（去秒）", "left_ha": "right", "right_ha": "left", "va": "center"},
+    "tick_spacing_deg": {"main_lon_lat": 0.3, "locator_a_lat": 10, "locator_b_lat": 4},
+    "alignment": "全图只用 TOP / BOT 两条水平基准线；每个面板贴其中一条，行高反解而非写死",
+    "panel_letter_pos": "top-left，与图名合并成一行 '(c)  Changshun county'",
+    "merged_block_top_line": "MAPS_Y = TOP - MAP_H，使面板顶脊与外框顶线重合，经度标签画到框外上方",
+    "column_aspect_rule": "da = lon_span*cos(lat_mid)/lat_span; 栏宽 = da*栏高*FH/FW（由数据宽高比反解，不手调）",
+    "china_panel": "纬度扩到 3.2N，南海诸岛与十段线画进图体，不用附图框；适配必须扩短边而非缩长边，否则裁掉台湾与东北",
+    "language_for_submission": "图内全英文；河名只能是拼音转写并在图注声明 not official toponyms",
+    "dem_grid_reality": "terrarium z=11 重采样后格网约 68 m（源数据 30 m），图注不得虚标"
+  },
+  "provenance_correction_2026_11_04": "v1.1 曾声称 nature_earth 变体逆向自 3 张正刊 Fig.1，复核后不成立：Nature 623 (2023) 喜马拉雅一文 p4 是纯正文无图；NC 15:2633 (2024) p2 Fig.1 是 3D 块状示意图（非研究区图）；NatGeosc 17:249 (2024) p2 Fig.1 是航片+野外照片（非 DEM 图）。真正的研究区图在该 Nature 文 Fig.1（manuscript p22）：其分层设色是 绿→黄→棕→红→白 全谱海拔带 + 强光照立体感，配白底黑字矩形单元标注框、蓝色斜体河名、右侧多行符号图例——与 nature_earth 的米黄→棕单色离散带并不相同。结论：nature_earth 的色带是**我自己选的克制配色**，不是正刊实证样式，使用前须向用户说明。pastel_tectonic 与 v9 以后各变体的出处是**用户粘贴的参考图**，同样不是已核实的正刊图页，分享时必须带上这段声明。",
+  "layout": {
+    "canvas": "11.6x8.8in @300dpi",
+    "panels": {
+      "c_main": {"x": 0.055, "y": 0.025, "w": 0.53, "h": 0.95, "side": "left-full"},
+      "a_country": {"x": 0.615, "y": 0.55, "w": 0.37, "h": 0.365, "side": "right-top"},
+      "b_province": {"x": 0.615, "y": 0.055, "w": 0.37, "h": 0.405, "side": "right-bottom"}
+    },
+    "panel_letter": {"font": "Times New Roman", "size_pt": 14, "weight": "bold", "pos": "top-right inside"}
+  },
+  "color": {
+    "highlight_red": "#e02222",
+    "highlight_edge": "#8b0000",
+    "dem_ramp": {
+      "family": "ColorBrewer RdYlGn_r (sequential, 色盲友好)",
+      "stops": ["#1a9850", "#66bd63", "#a6d96a", "#d9ef8b", "#fee08b", "#fdae61", "#f46d43", "#b2182b"],
+      "stretch": "percentile 2-98 of study-area pixels",
+      "rule": "低→高色带方向必须符合直觉；禁用 rainbow"
+    },
+    "style_variants": {
+      "rdy1gn_bright": "默认（v5/v6 管线）：连续 RdYlGn 8 档 + 浅色地形晕渲 wash 底图；build_map_v5.py / make_studyarea.py",
+      "nature_earth": "Nature 系（v7，build_map_v7_nature.py；**配色为 agent 自选克制方案，非正刊逆向，见 provenance_correction**）：Earth-tone 离散分层设色 [#F0DDBE 800m → #E0C9A3 1000 → #CBA37A 1150 → #B08462 1300 → #92684E 1450 → #6D4C41]；NW 315°/45° hillshade、垂直夸张 1.8x、hs 归一后 0.55+0.55*hs 再 clip(0.5,1.0)；研究区内混合 0.35*gray+0.65*tint；面板字母 (c) 白色粗体左上+黑色描边阴影，(a)(b) 黑色 Times 右上；红 #D0021B（高亮框/省域），水 #4A90E2/#2B6CB0；图例为竖向离散色块+区间标签（'651–800'…'> 1450'）标题 'm a.s.l.'；边界外仅浅色 wash，克制用色（减法原则）；县名标注带白色光晕，出界 0.06° 内的邻县名过滤不画",
+      "pastel_tectonic": "v8（build_map_v8_pastel.py）。**出处=用户 2026-11-04 粘贴的青藏高原构造图，非我从正刊核实所得**。样式要素：① 全幅（不只研究区内）pastel 连续海拔带 #D6E3CB→#E1E5CC→#EDE2D2→#E9D3C6→#DFBCB2→#D2A6A0，温和光照（夸张 1.2x，hs 均值中心化 0.86±0.22·z 再 clip 0.74–1.06）；② 区外像素向白淡出 0.42*scene+0.58 ——**关键**：系数低于 0.55 时县界只像一条分界线、研究区跳不出来；③ 面板字母=白色圆角小方框内黑色粗体 '(a)/(b)/(c)'，左上角；④ 经纬网刻度四侧向内，经度注**上边**、纬度注**左右两侧**，格式 106°15′E；⑤ 右上黑白分段比例尺 + 圆形指北针（N 在细圆圈内）；⑥ 定位图作为**内嵌小图置于主图左下角内部**而非独立面板，且邻县名若落入内嵌图 footprint（fx<0.42 且 fy<0.41）必须跳过，否则文字压在白底内嵌图上；⑦ 主图下方独立横向图例带，分格白框：高程色块 / 边界与水系 / 定位与注记 / 数据与坐标系。连续带按县内 1–99 百分位拉伸、分级图例按 16/33/50/66/83 分位，换区无需手调。",
+      "wujiang_catchment": "v9（build_map_v9_wujiang.py）。**出处=用户 2026-11-04 粘贴的乌江流域研究区图（六联 (a)(b)(c)(d)(f-1..3)）**。样式要素：① 面板字母 '(x)' Times 粗体黑色，**右上角内侧**（与 v8 的左上白框不同）；② 研究面用**青色填充 #29ABE2 + 红描边 #E51B22**，(a) 中国图里放省级高亮（县在这一级只有 1 px，必须升一级），(b) 区域图放县高亮，两图之间用**红色连接线**（必须在 figure 坐标画：axa.transData→fig.transFigure.inverted()，直接用数据坐标会飞到画布外）；③ 海拔带 green→red 8 档（RdYlGn_r），图例为白框 'Legend'：河线 + 竖向渐变条 + 'high: / low:'；④ 度分秒格式刻度 `106°12′00″E`，经度注上边、纬度注左边（(d) 注右边），刻度向内；⑤ 大号半黑半白指北针在左上，黑白四段比例尺带 'Km' 在左下；⑥ 底部 (f-x) 小面板：白底方框标题 + 纯轮廓/纯水系黑白图；⑦ 图下方必须写「未表示项」清单。踩坑：主图四周必须留 PADX≥0.16°/PADY≥0.10° 白边，否则 Legend 框会压住县界；(a)(b) 面板 x 起点≥0.05 才放得下左侧纬度标签；水系点必须先按县界裁剪（DEM 瓦片范围远大于县），否则县外一片蓝。**v10 追加三条**：① 面板适配必须用「包含式」——扩短边而不是缩长边，原 shrink 版会把中国东边（台湾+东北）裁掉；② 南海岛礁只在附图框内画，不要塞进主图体（其最南到 4°N，会把全国压成上半部一小块）；③ 双栏合并块 (c)|(d) 的每栏宽高比必须≈加缓冲后研究区外包框的宽高比（长顺 91×95 km≈正方形 → 每栏须近正方形），栏高给大了会出现「县缩在中间、两栏之间一大片白」；两栏范围相同时经度标签只印一栏，重复标注是噪声。",
+      "wujiang_catchment_v12": "v12（build_map_v12_aligned.py）= 版面纪律 + 字体统一版。① **上下边框对齐**：全图只设两条水平基准线 TOP/BOT，左列 (a)(b) 与右列「合并块 + (f) 行」都用它们定位——(a) 顶=TOP、(b) 底=BOT、合并块顶=TOP、(f) 行底=BOT，中间行高由 `B_H = (TOP - A_H - GAP) - BOT` 反解，不手写坐标；② **侧边纬度逆时针转 90°**：`t.set_rotation(90); t.set_va('center'); t.set_ha('right'|'left')`（左侧 right、右侧 left），经度标签保持水平；③ 全部刻度标签 `fontweight='bold'`；④ `rcParams['font.family']='Times New Roman'`，但**中文注记必须显式给回退列表** `family=['Times New Roman','Microsoft YaHei','SimHei']`，否则 Times 无 CJK 字形会变豆腐块。坑：共享骨架常量（TOP/BOT/GAP/A_H/B_H）必须定义在 (a) 面板之前，放在合并块那段里会让左列先执行而 NameError。",
+      "wujiang_catchment_v11": "v11（build_map_v11_tight.py）= 双栏 gutter 收紧版，做法是把栏宽算出来而不是拍数值：`da = (lon_span*cos(lat_mid))/lat_span`（用加缓冲后的研究区外包框），`HALF = da * MAP_H * FH / FW`，`BLK = (x0, y0, 2*HALF, ...)`，并把 PADX/PADY 收到 0.05/0.04。这样包含式适配不再加任何余量，县图左右边缘正好贴住栏边界，两栏之间的白区消失；省出的宽度回填给 (a)(b) 列并把合并块整体居中，(f-1)(f-2) 跟随 BLK 的 x 与栏宽对齐。副作用需连带处理：县名标签字号要降（12→10）否则溢出到邻栏，指北针要下移避开上边经度标签。",
+      "wujiang_catchment_v10": "v10（build_map_v10_merged.py）= wujiang_catchment 的版面修正版：(c)|(d) 合并进同一外框分两栏 + 框内底部共享图例带（river/县界 + 竖向高程渐变条 high/low m a.s.l. + 坡度六级横排），(a) 中国完整包含，(b) 标签避让与连接线改走西侧。"
+    },
+    "water": {"main": "#2b66b0", "texture": "#5b93d6"},
+    "boundary": {"study_area": "black 1.9pt", "prefecture": "black dashed 1.1pt", "neighbor": "#444 0.5pt", "national": "black 0.9pt", "province_edge": "#4a4a4a 0.35pt"},
+    "base_wash": {"valley_low": "#c7dfc2", "ridge_high": "#e5dbc2", "hillshade": "0.86+0.26*hs 浅色"}
+  },
+  "typography": {
+    "cn": "Microsoft YaHei / SimHei",
+    "hierarchy_pt": {"study_area_label": 13, "county_label": 8, "prefecture_label": 7.5, "legend_title": 9, "legend_item": 8, "tick": 7, "elev_number": 6.2},
+    "halo": "white stroke 2.2pt（标注压在底图上必须带光晕）"
+  },
+  "decorations": {
+    "north_arrow": "半黑半白三角，简约，禁装饰性",
+    "scale_bar": "黑白分段 2 段 + km 单位；每面板独立比例尺；km_per_deg=111.32*cos(lat_mid)",
+    "graticule": "度分秒格式 %d°%d′0″东/北；仅边缘刻度+四侧标注；间隔 0.5°",
+    "legend_box": "白底黑框，右下角；含水系/州界/县界/邻县界/高程渐变条(低高数值+单位m)",
+    "scgis_inset": "中国面板右下必须含南海诸岛附图+十段线（审稿高频项，缺失=42%风险）"
+  },
+  "compliance_checklist": [
+    "国界/省界用标准数据（DataV/十段线用 China-GeoData），不得 AI 生成",
+    "南海诸岛+钓鱼岛完整",
+    "台湾省标注规范",
+    "比例尺单位全图一致（km）",
+    "高程图例带单位 m",
+    "数据来源在图注/正文交代（DEM: Copernicus/AWS terrain tiles; 边界: 阿里DataV）",
+    "投稿导出 PDF 矢量 + 300dpi 双份",
+    "正式发表前送审取得审图号"
+  ],
+  "qa_loop": {
+    "checks": ["标注压盖", "边界-底图对齐", "色带方向", "白边", "图例完整性", "豆腐字"],
+    "max_fix_rounds": 3,
+    "method": "渲染→多模态读图→清单逐项→有界修正→重渲染"
+  }
+}

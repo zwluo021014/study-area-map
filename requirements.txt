@@ -1,0 +1,11 @@
+# study-area-map runtime dependencies (Python 3.10+)
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+Pillow>=10.0
+pyshp>=2.3
+shapely>=2.0
+rasterio>=1.3
+
+# optional
+# geopandas>=0.14   # only if you swap the pyshp readers for GeoDataFrame I/O
